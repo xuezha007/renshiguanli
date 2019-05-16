@@ -5,7 +5,7 @@
   Time: 22:57
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" import="com.bean.Emp,com.db.DBUtil" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" import="com.bean.Emp,com.db.DBUtil" errorPage="error.jsp" %>
 <%@ page import="java.util.Map" %>
 <html>
 <head>
@@ -22,9 +22,19 @@
     Emp emp = new Emp(account, null, password, null);
     Boolean flag = DBUtil.selectEmpAccountAndPassword(emp);
     Map<String, Emp> map = DBUtil.map;
-    if (flag = true) {
+    if (flag == true) {
+         Object o=application.getAttribute("count");
+         if(o==null)
+         {
+             application.setAttribute("count",1);
+         }
+         else{
+             int count =Integer.parseInt(o.toString());
+             application.setAttribute("count",count+1);
+         }
         session.setAttribute("account", account);
 %>
+<h3 align="right">访问量：<%=application.getAttribute("count")%> </h3>
 <h3 align="right">登录账户
     <%=
     session.getAttribute("account")%>
@@ -51,7 +61,7 @@
         <td><%=e.getPassword()%>
         </td>
         <td>
-            <a href="update.jsp">修改
+            <a href="update.jsp?account=<%=e.getAccount()%>&name=<%=e.getName()%>&passwoed:<%=e.getPassword()%>">修改
             </a>
         </td>
     </tr>
@@ -64,6 +74,7 @@
 <%
     } else {
         out.println("错误");
+        throw new Exception("账号密码错误");
     }
 %>
 </body>

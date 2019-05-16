@@ -22,18 +22,22 @@
     <table align="center" border="1" width="500px">
         <tr>
             <td>账号</td>
-            <td><input type="text" name="account"></td>
+            <td><input type="text" name="account" value="<%=request.getParameter("account")%>"></td>
         </tr>
         <tr>
             <td>名字</td>
-            <td><input type="text" name="name"></td>
+            <td><input type="text" name="name" value="<%=request.getParameter("name")%>"></td>
         </tr>
         <tr>
             <td>邮箱</td>
-            <td><input type="text" name="email"></td>
+            <td><input type="text" name="email" value="<%=request.getParameter("passworf")%>"</td>
         </tr>
-
-
+        <tr>
+            <td>
+                <input type="submit" value="修改">
+            </td>
+        </tr>
+        
     </table>
 </form>
 </body>
