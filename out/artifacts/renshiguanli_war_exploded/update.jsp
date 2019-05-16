@@ -18,7 +18,7 @@
 
     %>
 </h3>
-<form>
+<form action="control-update.jsp">
     <table align="center" border="1" width="500px">
         <tr>
             <td>账号</td>
